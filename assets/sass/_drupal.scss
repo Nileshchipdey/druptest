@@ -1,0 +1,436 @@
+/**
+ *  ----------------
+ *  Drupal Overrides
+ *  ----------------
+ *
+ *  Contents
+ *  --------
+ *  01 Miscellaneous
+ *  02 User Account Pages
+ *  03 Maintenance Page
+ *  04 Messages
+ *  05 Tabs
+ *  06 Pager
+ */
+
+/**
+ *  01 Miscellaneous
+ */
+.element-invisible {
+  font-size   : 0;
+  height      : 0;
+  line-height : 0;
+  margin      : 0;
+}
+#admin-menu {
+  a:before {display : none;}
+  .separator hr {
+    background : none;
+    border-top : 1px solid $quill_gray;
+    height     : 0;
+  }
+}
+body.admin-menu .page-content-wrapper {
+  padding-top : 29px;
+  @include respond-to(tablet_landscape) {padding-top : 0;}
+}
+body.admin-menu.menu-render-newline .page-content-wrapper {
+  padding-top : 58px;
+  @include respond-to(tablet_landscape) {padding-top : 0;}
+}
+
+/**
+ *  02 User Account Pages
+ */
+.page-user {
+  .actions {
+    display     : flex;
+    flex-wrap   : wrap;
+    font-size   : 0;
+    line-height : 0;
+    margin      : 0 0 40px;
+    a {
+      border-right   : 1px solid $bud;
+      color          : $black;
+      flex           : 0 0 auto;
+      font           : 400 normal 1rem/1.714em $futura;
+      margin         : 0 0 20px;
+      padding        : 0 40px;
+      position       : relative;
+      text-align     : center;
+      text-transform : uppercase;
+      white-space    : nowrap;
+      &:before {
+        background : $selective_yellow;
+        bottom     : -5px;
+        content    : '';
+        height     : 1px;
+        left       : 50%;
+        opacity    : 0;
+        position   : absolute;
+        transform  : translateX(-50%);
+        transition : opacity 0.25s ease-in-out;
+        visibility : hidden;
+        width      : calc(100% - 80px);
+      }
+      .no-touch &:hover,
+      .no-js &:hover {color : $faded_jade;}
+      &.active {
+        &:before {
+          opacity    : 1;
+          visibility : visible;
+        }
+      }
+      &:first-child {
+        padding-left : 0;
+        &:before {
+          left      : 0;
+          transform : none;
+          width     : calc(100% - 40px);
+        }
+      }
+      &:last-child  {
+        border-right  : 0 none;
+        padding-right : 0;
+        &:before {
+          left      : auto;
+          right     : 0;
+          transform : none;
+          width     : calc(100% - 40px);
+        }
+      }
+      @include respond-to(tablet_landscape_and_lower) {
+        width   : 33.333%;
+        padding : 0 20px;
+        &:before {width : calc(100% - 40px);}
+        &:first-child {
+          padding-left : 20px;
+          &:before {
+            left      : 50%;
+            transform : translateX(-50%);
+          }
+        }
+        &:last-child {
+          border-right  : 1px solid $bud;
+          padding-right : 20px;
+          &:before {
+            left      : 50%;
+            right     : auto;
+            transform : translateX(-50%);
+          }
+        }
+        &:nth-child(3n) {border-right : 0 none;}
+      }
+      @include respond-to(tablet_portrait_and_lower) {
+        width : 50%;
+        &:nth-child(3n) {border-right : 1px solid $bud;}
+        &:nth-child(2n) {border-right : 0 none;}
+      }
+      @include respond-to(mobile_landscape_and_lower) {
+        border-bottom : 1px solid $bud;
+        border-right  : 0 none;
+        margin        : 0;
+        padding       : 10px;
+        width         : 100%;
+        &.active      {color : $selective_yellow;}
+        &:before      {display : none;}
+        &:first-child {padding-left : 10px;}
+        &:last-child  {
+          border-bottom : 0 none;
+          padding-right : 10px;
+        }
+        &:nth-child(3n) {border-right : 0 none;}
+      }
+    }
+  }
+  &.page-account .content .profile {
+    display   : flex;
+    flex-wrap : wrap;
+    margin    : 0;
+    width     : 100%;
+    h2 {
+      flex  : 1 1 auto;
+      width : 100%;
+    }
+    .form-item {
+      flex  : 0 0 auto;
+      width : 33.333%;
+      @include respond-to(tablet_landscape_and_lower) {width : 50%;}
+      @include respond-to(tablet_portrait_and_lower)  {width : 100%;}
+    }
+  }
+}
+.not-logged-in main > .wrapper {
+  display        : flex;
+  flex-wrap      : wrap;
+  padding-bottom : 60px;
+  padding-top    : 60px;
+  .welcome {
+    flex   : 0 0 auto;
+    margin : 0 auto 0 0;
+    width  : 50%;
+    @include respond-to(tablet_landscape_and_lower) {width : 60%;}
+    @include respond-to(tablet_portrait_and_lower)  {
+      margin : 0;
+      order  : 1;
+      width  : 100%;
+    }
+    h1 {margin : 0 0 2.143rem !important;}
+    *:last-child {margin-bottom : 0;}
+  }
+  .login-form {
+    flex    : 0 0 auto;
+    padding : 0 0 0 100px;
+    width   : 50%;
+    @include respond-to(tablet_landscape_and_lower) {
+      padding : 0 0 0 40px;
+      width   : 40%;
+    }
+    @include respond-to(tablet_portrait_and_lower) {
+      margin  : 0 0 60px;
+      padding : 0;
+      order   : 0;
+      width   : 100%;
+    }
+    h2 {@extend h1;}
+    .outreach-award {
+      border-top : 1px solid $bud;
+      margin     : 20px 0 0;
+      padding    : 40px 0 0;
+      a {
+        display : block;
+        @include respond-to(tablet_portrait_and_lower) {
+          margin    : 0 auto;
+          max-width : 400px;
+        }
+        &:after {
+          clear   : both;
+          content : '';
+          display : table;
+        }
+        img {
+          display : block;
+          float   : left;
+          height  : auto;
+          width   : 40%;
+          @include respond-to(tablet_landscape_and_lower) {
+            float  : none;
+            margin : 0 auto;
+            width  : 60%;
+          }
+          @include respond-to(tablet_portrait_and_lower) {
+            float  : left;
+            margin : 0;
+            width  : 40%;
+          }
+          @include respond-to(mobile_portrait) {
+            float  : none;
+            margin : 0 auto;
+            width  : 60%;
+          }
+        }
+        span {
+          display     : block;
+          float       : left;
+          font-weight : 700;
+          padding     : 20px 0 0 40px;
+          width       : 60%;
+          @include respond-to(tablet_landscape_and_lower) {
+            float      : none;
+            padding    : 20px 0 0;
+            text-align : center;
+            width      : 100%;
+          }
+          @include respond-to(tablet_portrait_and_lower) {
+            float      : left;
+            padding    : 20px 0 0 40px;
+            text-align : left;
+            width      : 60%;
+          }
+          @include respond-to(mobile_portrait) {
+            float      : none;
+            padding    : 20px 0 0;
+            text-align : center;
+            width      : 100%;
+          }
+        }
+      }
+    }
+  }
+  .rego-form {
+    background : $gray_nurse;
+    flex       : 0 0 auto;
+    margin     : 0 0 0 100px;
+    padding    : 20px;
+    transform  : translateY(-20px);
+    width      : calc(50% - 100px);
+    @include respond-to(tablet_landscape_and_lower) {
+      margin    : 0 0 60px;
+      order     : 0;
+      transform : none;
+      width     : 100%;
+    }
+  }
+}
+.not-logged-in.page-user-register main > .wrapper .welcome {
+  @include respond-to(tablet_landscape_and_lower) {
+    margin : 0 0 60px;
+    width  : 100%;
+  }
+}
+.not-logged-in.page-user-password main > .wrapper {display : block;}
+
+/**
+ *  03 Maintenence Page
+ */
+.maintenance-message {
+  margin     : 100px auto;
+  text-align : center;
+  width      : 40%;
+  @include respond-to(tablet_portrait_and_lower) {
+    margin  : 100px 0;
+    padding : 0 40px;
+    width   : 100%;
+  }
+  @include respond-to(mobile_landscape_and_lower) {
+    margin  : 40px 0;
+    padding : 0 20px;
+  }
+}
+
+/**
+ *  04 Messages
+ */
+div.messages {
+  background : $grey;
+  border     : 0 none;
+  color      : $white;
+  margin     : 0;
+  padding    : 20px;
+  &.error {
+    background : $red;
+    color      : $white;
+  }
+  &.status {
+    background : $faded_jade;
+    color      : $white;
+  }
+  &.warning {
+    background : $selective_yellow;
+    color      : $black;
+    a {
+      color : rgba($black, 0.8);
+      .no-touch &:hover,
+      .no-js &:hover {color : $black;}
+    }
+  }
+  p {margin-bottom : 5px;}
+  a {
+    color : rgba($white, 0.8);
+    .no-touch &:hover,
+    .no-js &:hover {color : $white;}
+  }
+  .krumo-root {
+    color : $black;
+    a {
+      color : $black;
+      .no-touch &:hover,
+      .no-js &:hover {color : $black;}
+    }
+  }
+  *:last-child {margin-bottom : 0;}
+}
+
+/**
+ *  05 Tabs
+ */
+.tabs {
+  background : $quill_gray;
+  padding    : 15px 0 0;
+  ul.primary {
+    @extend      .wrapper;
+    background  : none;
+    border      : 0 none;
+    display     : flex;
+    font-size   : 0;
+    line-height : 0;
+    li {
+      flex    : 0 1 auto;
+      margin  : 0;
+      padding : 0;
+      a {
+        appearance     : none;
+        background     : $quill_gray;
+        border         : 0 none;
+        border-radius  : 3px 3px 0 0;
+        color          : $black;
+        cursor         : pointer;
+        display        : block;
+        font           : 700 normal 1rem/1em $humanist_slab;
+        letter-spacing : 0;
+        margin         : 0;
+        outline        : none;
+        padding        : 10px 15px;
+        text-align     : center;
+        transition     : background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+        &:before {display : none;}
+        .no-touch &:hover,
+        .no-js &:hover {
+          background : $bud;
+          color      : $black;
+        }
+        &.active {
+          background  : $white;
+          border      : 0 none;
+          color       : $black;
+          font-weight : 700;
+          .no-touch &:hover,
+          .no-js &:hover {
+            background : $white;
+            color      : $black;
+            cursor     : default;
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ *  06 Pager
+ */
+.pager {
+  display     : flex;
+  font-size   : 0;
+  line-height : 0;
+  padding-top : 15px !important;
+  li {
+    display : block !important;
+    flex    : 0 0 auto;
+    margin  : 0 !important;
+    padding : 0 !important;
+    &.pager-current,
+    &.pager-first,
+    &.pager-item,
+    &.pager-last {display : none !important;}
+    &.pager-next,
+    &.pager-previous {
+      width : 50%;
+      a {
+        @extend     .button;
+        font-size : 1rem;
+        width     : 100%;
+      }
+    }
+    &.pager-previous {
+      margin-right  : auto !important;
+      padding-right : 15px !important;
+      a {text-align : left;}
+    }
+    &.pager-next {
+      margin-left  : auto !important;
+      padding-left : 15px !important;
+      a {text-align : right;}
+    }
+  }
+}

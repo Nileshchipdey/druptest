@@ -1,0 +1,1193 @@
+/**
+ * ----------------------------------
+ * ----------------------------------
+ *
+ *  Argo Registrars
+ *  https://argoregistrars.com.au
+ *
+ *  Designed by: James Norton Design
+ *  https://www.jamesnortondesign.com
+ *
+ *  Developed by: Raphael Briskie
+ *  https://www.raphaelbriskie.com
+ *
+ * ----------------------------------
+ * ----------------------------------
+ *
+Contents
+ *  --------
+ *  01 Imports
+ *  02 Basic HTML
+ *  03 Content
+ *     a Header
+ *     b Main
+ *     c Home Page
+ *     d Pages
+ *     e Webforms
+ *     f Articles
+ *     g Article Pages
+ *     h Opportunities Page
+ *     i Products
+ *     j Products Page
+ *     k Courses (events)
+ *     l Courses Page
+ *     m Footer
+ *  04 Plugins
+ *     a Animations
+ *  05 Forms
+ *  06 Drupal
+ */
+
+/**
+ *  01 Imports
+ */
+@import 'reset';
+@import 'colours';
+@import 'page-transition';
+@import 'mixins';
+@import 'typography';
+
+/**
+ *  02 Basic HTML
+ */
+body {background : $nandor;}
+.wrapper {
+  margin    : 0 auto;
+  max-width : 1144px;
+  padding   : 0 60px;
+  width     : 100%;
+  @include respond-to(tablet_landscape) {padding : 0 40px;}
+  @include respond-to(mobile_landscape) {padding : 0 20px;}
+}
+
+/**
+ *  03 Content
+ */
+
+/** 03a Header **/
+header {
+  .level-zero {
+    background : $gray_nurse;
+    @include respond-to(tablet_portrait_and_lower) {display : none;}
+    .wrapper {
+      display : flex;
+      .account-links {
+        flex        : 1 1 auto;
+        font-size   : 0;
+        line-height : 0;
+        a {
+          color          : $black;
+          margin         : 0 40px 0 0;
+          font           : 400 normal 1rem/60px $futura;
+          text-transform : uppercase;
+          .no-touch &:hover,
+          .no-js &:hover {color : $mai_tai;}
+        }
+      }
+      .search {
+        flex : 0 0 auto;
+        .page-search & {display : none;}
+      }
+    }
+  }
+  .level-one {
+    background : $white;
+    .not-logged-in & {border-bottom : 1px solid $black;}
+    .wrapper {
+      display : flex;
+      .stryker-logo {
+        background      : url(../img/optimised/logo--stryker.svg) center center no-repeat;
+        background-size : 124px 32px;
+        flex            : 0 0 auto;
+        font-size       : 0;
+        height          : 31px;
+        line-height     : 0;
+        margin          : 30px 20px 29px 0;
+        width           : 124px;
+        @include respond-to(tablet_portrait_and_lower) {display : none;}
+      }
+      .logo {
+        display     : block;
+        flex        : 0 0 auto;
+        font-size   : 0;
+        line-height : 0;
+        margin      : 20px 0 20px auto;
+        @include respond-to(tablet_portrait_and_lower) {margin : 20px auto 20px 0;}
+        .argo,
+        .registrar {
+          color      : $black;
+          font       : 700 normal 1.857rem/1em $futura;
+          transition : color 0.25s ease-in-out;
+        }
+        .registrar {color : $selective_yellow;}
+        .tagline {
+          color          : $bud;
+          display        : block;
+          font           : 400 normal 1.429rem/1em $humanist_slab;
+          @include         font-smoothing();
+          padding        : 5px 0 0;
+          text-transform : lowercase;
+        }
+        .no-touch .not-front &:hover,
+        .no-js .not-front &:hover {
+          .registrar {color : $chelsea_gem;}
+        }
+      }
+      .menu-toggle {
+        display : none;
+        height  : 28px;
+        margin  : 31px 0;
+        width   : 35px;
+        @include respond-to(tablet_portrait_and_lower) {display : block;}
+        .lines {
+          display  : block;
+          height   : 100%;
+          position : relative;
+          width    : 100%;
+          .line {
+            background : $selective_yellow;
+            height     : 4px;
+            left       : 0;
+            position   : absolute;
+            top        : 0;
+            transition : background 0.25s ease-in-out;
+            width      : 100%;
+            &:nth-child(2) {
+              top       : 50%;
+              transform : translateY(-50%);
+            }
+            &:nth-child(3) {
+              bottom : 0;
+              top    : auto;
+            }
+          }
+        }
+        .no-touch &:hover,
+        .no-js &:hover {
+          .lines .line {background : $mai_tai;}
+        }
+      }
+    }
+  }
+  .level-two {
+    @include respond-to(tablet_portrait_and_lower) {
+      height     : auto;
+      max-height : 0;
+      overflow   : hidden;
+      transition : max-height 1s ease-in-out;
+      &.open {max-height : 999px;}
+    }
+    nav {
+      transform : translateX(-20px);
+      width     : calc(100% + 40px);
+      @include respond-to(tablet_portrait_and_lower) {padding : 20px 0;}
+      .menu {
+        display     : flex;
+        font-size   : 0;
+        line-height : 0;
+        margin      : 0;
+        overflow    : hidden;
+        padding     : 0;
+        width       : 100%;
+        @include respond-to(tablet_portrait_and_lower) {
+          display    : block;
+          text-align : right;
+        }
+        li {
+          flex       : 0 0 auto;
+          list-style : none;
+          margin     : 0;
+          padding    : 15px 20px;
+          @include respond-to(tablet_landscape) {padding : 15px 10px;}
+          @include respond-to(tablet_portrait_and_lower) {
+            padding : 5px 10px;
+            &.expanded > a {
+              padding  : 0 32px 0 10px;
+              position : relative;
+              &:after {
+                border-color : $white transparent transparent transparent;
+                border-style : solid;
+                border-width : 8px 6px 0 6px;
+                content      : '';
+                height       : 0;
+                position     : absolute;
+                right        : 10px;
+                top          : 50%;
+                transform    : translateY(-50%);
+                width        : 0;
+              }
+            }
+          }
+          a {
+            background     : $nandor;
+            display        : block;
+            color          : $white;
+            font           : 400 normal 1rem/30px $futura;
+            padding        : 0 15px;
+            text-transform : uppercase;
+            transition     : background 0.25s ease-in-out;
+            white-space    : nowrap;
+            @include respond-to(tablet_landscape) {padding : 0 10px;}
+            .no-touch &:hover,
+            .no-js &:hover {
+              background : $mai_tai;
+              color      : $white;
+            }
+            @include respond-to(tablet_portrait_and_lower) {
+              &.open + .menu {max-height : 999px;}
+            }
+          }
+          .menu {
+            display : none;
+            @include respond-to(tablet_portrait_and_lower) {
+              display    : block;
+              height     : auto;
+              max-height : 0;
+              overflow   : hidden;
+              transition : max-height 1s ease-in-out;
+            }
+            li {
+              padding : 5px 0;
+              a {
+                text-transform : none;
+                .no-touch &:hover,
+                .no-js &:hover {
+                  background : $bud;
+                  color      : $mai_tai;
+                }
+              }
+            }
+          }
+        }
+      }
+      .mobile-menu {
+        background : rgba($nandor, 0.5);
+        display    : none;
+        margin     : 10px 0 0;
+        padding    : 10px 0 0;
+        position   : relative;
+        text-align : right;
+        &:before {
+          background : $gray_nurse;
+          content    : '';
+          display    : block;
+          height     : 1px;
+          left       : 50%;
+          position   : absolute;
+          top        : 0;
+          transform  : translateX(-50%);
+          width      : calc(100% - 20px);
+        }
+        @include respond-to(tablet_portrait_and_lower) {display : block;}
+        a {
+          background     : transform;
+          display        : block;
+          color          : $white;
+          font           : 400 normal 1rem/30px $futura;
+          margin         : 5px 10px;
+          padding        : 0 10px;
+          text-transform : uppercase;
+          transition     : background 0.25s ease-in-out;
+          white-space    : nowrap;
+          .no-touch &:hover,
+          .no-js &:hover {
+            background : $mai_tai;
+            color      : $white;
+          }
+        }
+      }
+    }
+    .sub-menus {
+      @include respond-to(tablet_portrait_and_lower) {display : none;}
+      .sub-menu {
+        background    : $gray_nurse;
+        border-bottom : 0 solid $nandor;
+        height        : auto;
+        max-height    : 0;
+        overflow      : hidden;
+        transition    : border 0.25s ease-in-out, max-height 1s ease-in-out;
+        &.open {
+          border-bottom : 2px solid $nandor;
+          max-height    : 322px;
+        }
+        .wrapper {
+          height : 100%;
+          .menu {
+            align-content  : flex-start;
+            display        : flex;
+            flex-direction : column;
+            flex-wrap      : wrap;
+            font-size      : 0;
+            height         : 100%;
+            line-height    : 0;
+            margin         : 0;
+            overflow       : hidden;
+            padding        : 20px 0;
+            transform      : translateX(-20px);
+            width          : calc(100% + 40px);
+            li {
+              flex       : 0 0 auto;
+              list-style : none;
+              margin     : 0;
+              padding    : 10px 20px;
+              width      : 25%;
+              @include respond-to(tablet_landscape) {padding : 10px 10px;}
+              a {
+                background : $gray_nurse;
+                display    : block;
+                color      : $black;
+                font       : 700 normal 1rem/1.429em $futura;
+                padding    : 10px 15px;
+                transition : background 0.25s ease-in-out, color 0.25s ease-in-out;
+                @include respond-to(tablet_landscape) {padding : 10px;}
+                .no-touch &:hover,
+                .no-js &:hover {
+                  background : $bud;
+                  color      : $mai_tai;
+                }
+              }
+              .menu {display : none;}
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/** 03b Main **/
+main {
+  background : $white;
+  .breadcrumb {
+    padding : 30px 0;
+    .separator {color : $bud;}
+    + article {padding-top : 0;}
+  }
+}
+
+/** 03c Home Page **/
+.front main > .wrapper {
+  display        : flex;
+  flex-wrap      : wrap;
+  padding-bottom : 60px;
+  padding-top    : 60px;
+  .new {
+    flex   : 1 1 auto;
+    margin : 0 0 60px;
+    width  : 66.666%;
+    @include respond-to(tablet_landscape_and_lower) {width : 60%;}
+    @include respond-to(tablet_portrait_and_lower)  {
+      order : 2;
+      width : 100%;
+    }
+    h2 {
+      @extend h1;
+      + .content {padding-top : 0;}
+    }
+    .content {
+      border-bottom : 1px solid $bud;
+      padding       : 20px 0 10px;
+      h3 {
+        font   : 700 normal 1.214em/1.353em $futura;
+        margin : 0 0 0.118em;
+      }
+    }
+  }
+  .product-feature {
+    flex    : 0 0 auto;
+    padding : 0 0 0 60px;
+    width   : 33.333%;
+    @include respond-to(tablet_landscape_and_lower) {
+      padding : 0 0 0 40px;
+      width   : 40%;
+    }
+    @include respond-to(tablet_portrait_and_lower) {
+      order   : 3;
+      padding : 0;
+      width   : 100%;
+    }
+    h2 {@extend h1;}
+    a {display : block;}
+    .product {
+      margin : 0;
+      width  : 100%;
+      td {padding : 0;}
+      img {
+        display : block;
+        height  : auto;
+        width   : 100%;
+      }
+    }
+  }
+  .welcome {
+    flex   : 0 0 auto;
+    margin : 0 auto 0 0;
+    width  : 66.666%;
+    @include respond-to(tablet_landscape_and_lower) {width : 60%;}
+    @include respond-to(tablet_portrait_and_lower)  {
+      margin : 0 0 60px;
+      order  : 1;
+      width  : 100%;
+    }
+    h1 {
+      margin : 0 0 1.429rem;
+      @include respond-to(tablet_portrait_and_lower) {margin : 0 0 2.143rem;}
+    }
+    *:last-child {margin-bottom : 0;}
+  }
+}
+
+/** 03d Pages **/
+.page {
+  padding : 60px 0;
+  .content {
+    display : flex;
+    @include respond-to(tablet_portrait_and_lower) {display : block;}
+    .tags {
+      flex   : 0 0 auto;
+      margin : 0 40px 0 0;
+      width  : 80px;
+      @include respond-to(tablet_portrait_and_lower) {
+        display : flex;
+        margin  : 0;
+        width   : 100%;
+      }
+      .tag {
+        border     : 1px solid $black;
+        font       : 700 normal 0.786em/24px $futura;
+        margin     : 0 0 20px;
+        padding    : 0 10px;
+        text-align : center;
+        @include respond-to(tablet_portrait_and_lower) {margin : 0 20px 20px 0;}
+      }
+    }
+    .body {
+      flex   : 0 0 auto;
+      margin : 0 0 0 auto;
+      width  : calc(100% - 120px);
+      @include respond-to(tablet_portrait_and_lower) {width : 100%;}
+      div {@extend p;}
+      table {
+        margin : 0 0 1.429rem;
+        width  : 100%;
+        & + h2,
+        & + h3,
+        & + h4 {padding-top : 1.429rem;}
+        caption {
+          @extend      h2;
+          margin     : 0;
+          text-align : left;
+        }
+        tr {
+          border  : 1px solid $bud;
+          padding : 0;
+          &.odd,
+          &:nth-child(odd) {background : $gray_nurse;}
+          &.even,
+          &:nth-child(even) {background : $white;}
+          td,
+          th {
+            padding        : 10px;
+            vertical-align : top;
+          }
+        }
+      }
+      *:last-child {margin-bottom : 0;}
+    }
+  }
+}
+
+/** 03e Webforms **/
+.webform {
+  @extend .page;
+  .webform-client-form {
+    flex   : 0 0 auto;
+    margin : 0 0 0 auto;
+    width  : calc(100% - 120px);
+    @include respond-to(tablet_portrait_and_lower) {width : 100%;}
+  }
+}
+
+/** 03f Articles **/
+.article {
+  background : $white;
+  margin     : 0 0 60px;
+  overflow   : hidden;
+  padding    : 0 10px;
+  width      : 33.333%;
+  @include respond-to(tablet_landscape_and_lower) {width : 50%;}
+  @include respond-to(tablet_portrait_and_lower)  {width : 100%;}
+  .node-type-article & {
+    padding : 0 0 60px;
+    width   : 100%;
+  }
+  h3 {
+    border-bottom : 1px solid $bud;
+    margin        : 0 0 0.357rem;
+    padding       : 0 0 0.714rem;
+  }
+  .date {margin : 0 0 1.714rem;}
+  .image {
+    margin : 0 0 20px;
+    img {
+      display : block;
+      height  : auto;
+      width   : 100%;
+    }
+  }
+  .body {
+    div {@extend p;}
+    a {word-break : break-word;}
+    *:last-child {margin : 0;}
+  }
+}
+
+/** 03g Article Pages **/
+.page-news .articles {
+  transform : translateX(-10px);
+  width     : calc(100% + 20px);
+}
+
+/** 03h Opportunities Page **/
+.page-opportunities {
+  .terms {
+    display     : flex;
+    flex-wrap   : wrap;
+    font-size   : 0;
+    line-height : 0;
+    a {
+      border-right   : 1px solid $bud;
+      color          : $black;
+      flex           : 0 0 auto;
+      font           : 400 normal 1rem/1.714em $futura;
+      margin         : 0 0 20px;
+      padding        : 0 40px;
+      position       : relative;
+      text-align     : center;
+      text-transform : uppercase;
+      white-space    : nowrap;
+      &:before {
+        background : $selective_yellow;
+        bottom     : -5px;
+        content    : '';
+        height     : 1px;
+        left       : 50%;
+        opacity    : 0;
+        position   : absolute;
+        transform  : translateX(-50%);
+        transition : opacity 0.25s ease-in-out;
+        visibility : hidden;
+        width      : calc(100% - 80px);
+      }
+      .no-touch &:hover,
+      .no-js &:hover {color : $faded_jade;}
+      &.active {
+        &:before {
+          opacity    : 1;
+          visibility : visible;
+        }
+      }
+      &:first-child {
+        padding-left : 0;
+        &:before {
+          left      : 0;
+          transform : none;
+          width     : calc(100% - 40px);
+        }
+      }
+      &:last-child  {
+        border-right  : 0 none;
+        padding-right : 0;
+        &:before {
+          left      : auto;
+          right     : 0;
+          transform : none;
+          width     : calc(100% - 40px);
+        }
+      }
+      @include respond-to(tablet_landscape_and_lower) {
+        width   : 33.333%;
+        padding : 0 20px;
+        &:before {width : calc(100% - 40px);}
+        &:first-child {
+          padding-left : 20px;
+          &:before {
+            left      : 50%;
+            transform : translateX(-50%);
+          }
+        }
+        &:last-child {
+          border-right  : 1px solid $bud;
+          padding-right : 20px;
+          &:before {
+            left      : 50%;
+            right     : auto;
+            transform : translateX(-50%);
+          }
+        }
+        &:nth-child(3n) {border-right : 0 none;}
+      }
+      @include respond-to(tablet_portrait_and_lower) {
+        width : 50%;
+        &:nth-child(3n) {border-right : 1px solid $bud;}
+        &:nth-child(2n) {border-right : 0 none;}
+      }
+      @include respond-to(mobile_landscape_and_lower) {
+        border-bottom : 1px solid $bud;
+        border-right  : 0 none;
+        margin        : 0;
+        padding       : 10px;
+        width         : 100%;
+        &.active      {color : $selective_yellow;}
+        &:before      {display : none;}
+        &:first-child {padding-left : 10px;}
+        &:last-child  {
+          border-bottom : 0 none;
+          padding-right : 10px;
+        }
+        &:nth-child(3n) {border-right : 0 none;}
+      }
+    }
+  }
+  .table-wrapper {
+    height     : auto;
+    max-height : 0;
+    overflow   : hidden;
+    transition : max-height 2s ease-in-out;
+    &.active {max-height : 5555px;}
+  }
+  table {
+    margin     : 40px 0 0;
+    width      : 100%;
+    caption {text-align : left;}
+    tr {
+      border  : 1px solid $bud;
+      padding : 0;
+      &.odd  {background : $gray_nurse;}
+      &.even {background : $white;}
+      td,
+      th {
+        padding        : 10px;
+        vertical-align : top;
+      }
+      td {
+        &.views-field-field-supervisor span {white-space : nowrap;}
+        &.views-field-field-stryker- .field-content {
+          color      : $dove_gray;
+          font-size  : 1.5rem;
+          text-align : center;
+        }
+        &.views-field-field-attachment .field-content {
+          text-align : center;
+          i {
+            font-size   : 1.5rem;
+            line-height : 1em;
+          }
+        }
+      }
+    }
+    @include respond-to(tablet_landscape_and_lower) {
+      display : block;
+      thead   {display : none;}
+      caption {display : block;}
+      tbody   {
+        display   : flex;
+        flex-wrap : wrap;
+        transform : translateX(-10px);
+        width     : calc(100% + 20px);
+      }
+      tr {
+        display        : flex;
+        flex           : 0 0 auto;
+        flex-direction : column;
+        margin         : 0 10px 20px;
+        width          : calc(50% - 20px);
+        &.odd  {background : $white;}
+        &.even {background : $white;}
+        td {
+          display : flex;
+          flex    : 0 0 auto;
+          padding : 0;
+          &:before {
+            background : rgba($quill_gray, 0.5);
+            flex       : 0 0 auto;
+            padding    : 5px 10px;
+            width      : 120px;
+          }
+          &.views-field-field-fellowship {
+            &:before {content : 'Fellowship';}
+            .field-content {font-weight : 700;}
+          }
+          &.views-field-field-state-country:before {content : 'State / Country';}
+          &.views-field-field-the-site:before      {content : 'Site';}
+          &.views-field-field-supervisor:before    {content : 'Supervisor';}
+          &.views-field-field-stryker-:before      {content : 'Stryker';}
+          &.views-field-field-attachment:before    {content : 'More Info';}
+          .field-content {padding : 5px 10px;}
+          &:first-child {
+            &:before,
+            .field-content {padding-top : 10px;}
+          }
+          &:last-child  {
+            flex : 1 1 auto;
+            &:before,
+            .field-content {padding-bottom : 10px;}
+          }
+        }
+      }
+    }
+    @include respond-to(tablet_portrait_and_lower) {
+      display : block;
+      thead   {display : none;}
+      caption {display : block;}
+      tbody   {
+        display   : block;
+        transform : none;
+        width     : 100%;
+      }
+      tr {
+        display : block;
+        margin  : 0 0 20px;
+        width   : 100%;
+      }
+    }
+  }
+}
+
+/** 03i Products **/
+.product {
+  border : 1px solid $bud;
+  margin : 0 0 60px;
+  width  : 100%;
+  tr {
+    padding : 0;
+    th {
+      padding : 10px;
+      h3 {
+        font   : 700 normal 1em/1.429em $humanist_slab;
+        margin : 0;
+      }
+    }
+    td {
+      border         : 1px solid $bud;
+      padding        : 10px;
+      vertical-align : top;
+      &.heading {
+        background : $gray_nurse;
+        h4 {
+          font           : 700 normal 1em/1.429em $humanist_slab;
+          margin         : 0;
+          text-transform : none;
+        }
+      }
+      &.body {
+        *:last-child {margin-bottom : 0;}
+      }
+      &.image {
+        background : $quill_gray;
+        padding    : 0;
+        width      : 33.333%;
+        img {
+          display : block;
+          height  : auto;
+          width   : 100%;
+        }
+      }
+      &.images {
+        padding : 0;
+        .images {
+          display   : flex;
+          flex-wrap : wrap;
+          .image {
+            border   : 1px solid $bud;
+            flex     : 0 0 auto;
+            height   : 60px;
+            margin   : 10px;
+            overflow : hidden;
+            width    : 60px;
+            img {
+              display : block;
+              height  : auto;
+              width   : 100%;
+            }
+          }
+        }
+      }
+    }
+    &.download td:last-child {
+      text-align : right;
+      a {
+        font-size   : 1.5rem;
+        line-height : 1em;
+      }
+    }
+  }
+}
+
+/** 03j Products Page **/
+.page-products {
+  padding : 0 0 1px;
+  .introduction {
+    padding-bottom : 40px;
+    *:last-child {margin-bottom : 0;}
+  }
+}
+.node-type-product main {padding-bottom : 1px;}
+
+/** 03k Courses (events) **/
+.event {
+  display       : flex;
+  padding       : 40px 0 0;
+  @include respond-to(tablet_portrait_and_lower) {display : block;}
+  .node-type-event & {padding-bottom : 60px;}
+  .tags {
+    flex   : 0 0 auto;
+    margin : 0 40px 0 0;
+    width  : 80px;
+    @include respond-to(tablet_portrait_and_lower) {
+      display : flex;
+      margin  : 0;
+      width   : 100%;
+    }
+    .tag {
+      border     : 1px solid $black;
+      font       : 700 normal 0.786em/24px $futura;
+      margin     : 0 0 20px;
+      padding    : 0 10px;
+      text-align : center;
+      @include respond-to(tablet_portrait_and_lower) {margin : 0 20px 20px 0;}
+    }
+  }
+  .content {
+    border-bottom : 1px solid $bud;
+    display       : block;
+    flex          : 0 0 auto;
+    margin        : 0 0 0 auto;
+    width         : calc(100% - 120px);
+    @include respond-to(tablet_portrait_and_lower) {width : 100%;}
+    h3 {margin : 0 0 5px;}
+    .details {
+      font-family : $futura;
+      font-size   : 0;
+      font-weight : 700;
+      line-height : 0;
+      margin      : 0 0 20px;
+      span {
+        font-size   : 1rem;
+        line-height : 1.429em;
+        &.location {
+          padding  : 0 0 0 22px;
+          position : relative;
+          &:before {
+            background : $black;
+            content    : '';
+            height     : 100%;
+            left       : 10px;
+            position   : absolute;
+            top        : 50%;
+            transform  : translateY(-50%);
+            width      : 2px;
+          }
+        }
+      }
+    }
+    .body {
+      width : 100%;
+      div {@extend p;}
+      *:last-child {margin-bottom : 0;}
+      img {
+        display   : inline-block;
+        height    : auto;
+        max-width : 100%;
+        width     : auto;
+      }
+    }
+    .video {
+      display : flex;
+      padding : 20px 0 0;
+      @include respond-to(tablet_landscape_and_lower) {flex-wrap : wrap;}
+      .video-wrapper-wrapper {
+        flex : 1 1 auto;
+        @include respond-to(tablet_landscape_and_lower) {width : 100%;}
+        .video-wrapper {
+          height         : 0;
+          max-width      : 100%;
+          overflow       : hidden;
+          padding-bottom : 56.25%;
+          position       : relative;
+          iframe,
+          object,
+          embed {
+            height   : 100%;
+            left     : 0;
+            position : absolute;
+            top      : 0;
+            width    : 100%;
+          }
+        }
+      }
+      .video-blurb {
+        flex    : 0 0 auto;
+        padding : 0 0 0 20px;
+        width   : 33.333%;
+        @include respond-to(tablet_landscape_and_lower) {
+          padding : 10px 0 0;
+          width   : 100%;
+        }
+        *:last-child {margin-bottom : 0;}
+      }
+    }
+    .links {
+      display   : flex;
+      flex-wrap : wrap;
+      padding   : 10px 0;
+      transform : translateX(-10px);
+      width     : calc(100% + 20px);
+      a {
+        font-weight : 700;
+        margin      : 10px 60px 10px 10px;
+        padding     : 0 0 0 30px;
+        position    : relative;
+        i {
+          font-size   : 1.5em;
+          left        : 0;
+          line-height : 1em;
+          position    : absolute;
+          top         : 50%;
+          transform   : translateY(-50%);
+        }
+      }
+    }
+  }
+}
+
+/** 03l Courses Page **/
+.page-courses {
+  &.page-courses-past {
+    .event {
+      .tags {display : none;}
+      .content {
+        flex : 1 1 auto;
+        .links .email {display : none;}
+      }
+    }
+  }
+}
+
+/** 03m Footer **/
+footer {
+  padding : 60px 0 20px;
+  .wrapper {
+    display   : flex;
+    flex-wrap : wrap;
+    .contact,
+    .navigation,
+    .legal {
+      color  : $white;
+      flex   : 1 1 auto;
+      margin : 0 0 60px;
+      h4 {color : $white;}
+    }
+    .contact {
+      border-right : 1px solid rgba($white, 0.15);
+      flex         : 0 0 auto;
+      margin       : 0 40px 60px 0;
+      padding      : 0 40px 0 0;
+      width        : 200px;
+      @include respond-to(mobile_landscape_and_lower) {
+        border-bottom : 1px solid rgba($white, 0.15);
+        border-right  : 0 none;
+        margin        : 0 0 40px;
+        padding       : 0 0 40px;
+        width         : 100%;
+      }
+      a {
+        color : $selective_yellow;
+        .no-js &:hover,
+        .no-touch &:hover {color : $bud;}
+      }
+      *:last-child {margin-bottom : 0;}
+    }
+    .navigation {
+      border-bottom : 1px solid rgba($white, 0.15);
+      margin        : 0 0 60px;
+      padding       : 0 0 40px;
+      width         : 100%;
+      @include respond-to(mobile_landscape_and_lower) {
+        margin  : 0 0 40px;
+        padding : 20px 0;
+      }
+      h4 {display : none;}
+      > .menu {
+        display     : flex;
+        flex-wrap   : wrap;
+        font-size   : 0;
+        line-height : 0;
+        margin      : 0;
+        padding     : 0;
+        transform   : translateX(-20px);
+        width       : calc(100% + 40px);
+        @include respond-to(tablet_landscape_and_lower) {
+          transform : translateX(-10px);
+          width     : calc(100% + 20px);
+        }
+        > li {
+          flex       : 0 1 auto;
+          list-style : none;
+          margin     : 0;
+          padding    : 0 20px 20px;
+          width      : 16.666%;
+          @include respond-to(tablet_landscape_and_lower) {
+            padding : 0 10px 20px;
+            width   : 25%;
+          }
+          @include respond-to(tablet_portrait_and_lower)  {width : 33.333%;}
+          @include respond-to(mobile_landscape_and_lower) {width : 50%;}
+          a {
+            color       : $white;
+            font-size   : 1rem;
+            line-height : 1.429em;
+            font-weight : 700;
+            .no-js &:hover,
+            .no-touch &:hover {color : $bud;}
+          }
+          .menu {
+            margin  : 0;
+            padding : 0;
+            width   : 100%;
+            li {
+              display : block;
+              margin  : 0;
+              padding : 0;
+              a {font-weight : 400;}
+              .menu {display : none;}
+            }
+          }
+        }
+      }
+    }
+    .legal {
+      flex       : 1 1 auto;
+      margin     : 0;
+      max-height : 140px;
+      overflow   : hidden;
+      padding    : 0 0 60px;
+      position   : relative;
+      transition : max-height 0.5s ease-in-out;
+      width      : calc(100% - 240px);
+      @include respond-to(mobile_landscape_and_lower) {
+        margin : 0 0 40px;
+        width  : 100%;
+      }
+      &:after {
+        background :    -moz-linear-gradient(0deg, rgba($nandor, 1) 20%, rgba($nandor, 0) 100%);
+        background : -webkit-linear-gradient(0deg, rgba($nandor, 1) 20%, rgba($nandor, 0) 100%);
+        background :         linear-gradient(0deg, rgba($nandor, 1) 20%, rgba($nandor, 0) 100%);
+        bottom     : 0;
+        content    : '';
+        height     : 100px;
+        left       : 0;
+        opacity    : 1;
+        position   : absolute;
+        transition : opacity 0.25s ease-in-out;
+        visibility : visible;
+        width      : 100%;
+      }
+      .button {
+        bottom      : 0;
+        color       : $black;
+        height      : 34px;
+        left        : 0;
+        line-height : 34px;
+        position    : absolute;
+        z-index     : 1;
+        @include respond-to(mobile_landscape_and_lower) {width : auto;}
+        .no-js &:hover,
+        .no-touch &:hover {color : $black;}
+        .open {display : none;}
+      }
+      &.open {
+        max-height : 9999px;
+        &:after {
+          opacity    : 0;
+          transition : opacity 0.25s ease-in-out, visibility 0.25s ease-in-out 0.25s;
+          visibility : hidden;
+        }
+        .button {
+          .open   {display : block;}
+          .closed {display : none;}
+        }
+      }
+      a {
+        color : $bud;
+        .no-js &:hover,
+        .no-touch &:hover {color : $selective_yellow;}
+      }
+      *:last-child {margin-bottom : 0;}
+    }
+    .copyright {
+      color      : $bud;
+      margin     : 0 0 40px;
+      padding    : 20px 0 0;
+      text-align : center;
+      width      : 100%;
+      a {
+        color : $bud;
+        .no-js &:hover,
+        .no-touch &:hover {color : $selective_yellow;}
+      }
+    }
+  }
+}
+
+/**
+ *  04 Plugins
+ */
+
+/** 04a Animations **/
+@keyframes fade-in-bounce-up {
+  0%   {
+    opacity : 0;
+    transform : translateY(25%);
+  }
+  75% {
+    opacity   : 1;
+    transform : translateY(-5px);
+  }
+  100% {
+    opacity   : 1;
+    transform : translateY(0);
+  }
+}
+@keyframes fade-in-bounce-up-mobile {
+  0%   {
+    opacity : 0;
+    transform : translateY(25%);
+  }
+  75% {
+    opacity   : 1;
+    transform : translateY(-93px);
+  }
+  100% {
+    opacity   : 1;
+    transform : translateY(-88px);
+  }
+}
+@keyframes spin {
+  0%   {transform : rotate(0deg);}
+  100% {transform : rotate(360deg);}
+}
+@keyframes spin-alt {
+  0%   {transform : rotate(360deg);}
+  100% {transform : rotate(0deg);}
+}
+
+/**
+ *  05 Forms
+ */
+@import 'forms';
+
+/**
+ *  06 Drupal
+ */
+@import 'drupal';

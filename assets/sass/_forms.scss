@@ -1,0 +1,660 @@
+/**
+ *  -----
+ *  Forms
+ *  -----
+ *
+ *  Contents
+ *  --------
+ *  01 Defaults
+ *  02 Ajax Throbber
+ *  03 Webforms
+ *  04 Newsletter Form
+ *  05 Search Block
+ *  06 Search Page
+ *  07 User Forms
+ *  08 Address Field
+ */
+
+/**
+ * 01 Defaults
+ */
+.form-item {
+  clear    : left;
+  margin   : 0 0 25px;
+  padding  : 0;
+  position : relative;
+  label {
+    color         : $black;
+    display       : block;
+    font          : 700 normal 1em/1.429em $humanist_slab;
+    margin-bottom : 0.357em;
+    .form-required {color : $nandor;}
+  }
+  .description {
+    color       : $nandor;
+    font-size   : 0.857em;
+    line-height : 1.333em;
+    padding-top : 0.357em;
+  }
+}
+.form-textarea-wrapper {
+  margin : 0;
+  width  : 100%;
+  .grippie {
+    background-color : transparent;
+    border           : 0 none;
+  }
+}
+.form-actions {
+  margin  : 0;
+  padding : 0;
+  width   : 100%;
+}
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='phone'],
+input[type='text'],
+textarea {
+  appearance         : none;
+  -webkit-appearance : none;
+  background         : $quill_gray;
+  border             : 1px solid $quill_gray;
+  border-radius      : 3px;
+  color              : $black;
+  display            : block;
+  font               : 400 normal 1em/1.429em $humanist_slab;
+  height             : 35px;
+  margin             : 0;
+  max-width          : 100%;
+  outline            : none;
+  padding            : 7.5px 15px;
+  resize             : none;
+  transition         : border-color 0.25s ease-in-out;
+  width              : 100%;
+  &:focus {border-color : $selective_yellow;}
+  &.error {
+    border-color : $red;
+    color        : $red;
+    &:focus {
+      border-color : $selective_yellow;
+      color        : $black;
+    }
+  }
+}
+textarea {
+  height      : auto;
+  line-height : 1.5em;
+}
+.form-radios,
+.form-checkboxes {
+  &:after {
+    display : table;
+    clear   : both;
+    content : '';
+  }
+}
+.form-type-radio,
+.form-type-checkbox {
+  clear   : both;
+  float   : none;
+  margin  : 0 0 15px !important;
+  padding : 0;
+  width   : 100%;
+  label {
+    color          : $black;
+    cursor         : pointer;
+    font-weight    : 400;
+    margin         : 0;
+    padding-left   : 40px;
+    position       : relative;
+    text-transform : none;
+    transition     : color 0.25s ease-in-out;
+    .no-touch &:hover,
+    .no-js &:hover {color : $faded_jade;}
+  }
+  .description {
+    margin       : 0;
+    padding-left : 40px;
+  }
+  input[type='radio'],
+  input[type='checkbox'] {
+    display : none;
+    & + label {
+      &:after {
+        background    : $selective_yellow;
+        border-radius : 100%;
+        content       : '';
+        display       : inline-block;
+        height        : 8px;
+        left          : 8px;
+        opacity       : 0;
+        position      : absolute;
+        top           : 8px;
+        transition    : opacity 0.25s ease-in-out;
+        width         : 8px;
+      }
+      &:before {
+        background    : transparent;
+        border        : 1px solid $black;
+        border-radius : 100%;
+        content       : '';
+        display       : inline-block;
+        height        : 25px;
+        left          : 0;
+        position      : absolute;
+        top           : 0;
+        transition    : border-color 0.25s ease-in-out;
+        width         : 25px;
+      }
+    }
+    &:checked + label {
+      &:after  {opacity : 1;}
+      &:before {border-color : $black;}
+      .no-touch &:hover,
+      .no-js &:hover {color : $black;}
+    }
+    &.error + label {color : $red;}
+  }
+  input[type='checkbox'] + label:before {border-radius : 0;}
+}
+.custom-select {
+  background    : $quill_gray;
+  border        : 1px solid $quill_gray;
+  border-radius : 2px;
+  color         : $black;
+  display       : block;
+  max-width     : 100%;
+  overflow      : hidden;
+  position      : relative;
+  transition    : border-color 0.25s ease-in-out;
+  width         : 100%;
+  &:after {
+    color       : $black;
+    content     : '\f063';
+    display     : block;
+    font-family : $font_awesome;
+    height      : 35px;
+    line-height : 35px;
+    position    : absolute;
+    right       : 0;
+    text-align  : center;
+    top         : 0;
+    width       : 35px;
+  }
+  select {
+    appearance         : none;
+    -webkit-appearance : none;
+    background         : transparent;
+    border             : 0 none;
+    border-radius      : 0;
+    color              : $black;
+    cursor             : pointer;
+    font               : 400 normal 1em/1.429em $humanist_slab;
+    height             : 35px;
+    margin             : 0;
+    outline            : none;
+    padding            : 7.5px 15px;
+    position           : relative;
+    width              : 125%;
+    z-index            : 100;
+  }
+  .no-js &:hover,
+  .no-touch &:hover {border-color : $selective_yellow;}
+  &.error {
+    border-color : $red;
+    color        : $red;
+  }
+}
+input[type='submit'],
+.button {
+  appearance         : none;
+  -webkit-appearance : none;
+  background         : $selective_yellow;
+  border             : 0 none;
+  border-radius      : 0;
+  color              : $black;
+  cursor             : pointer;
+  display            : block;
+  font               : 400 normal 1em/40px $futura;
+  height             : 40px;
+  letter-spacing     : 0;
+  margin             : 0;
+  outline            : none;
+  padding            : 0 15px;
+  text-align         : center;
+  text-transform     : uppercase;
+  transition         : background-color 0.25s ease-in-out;
+  @include respond-to(mobile_landscape_and_lower) {width : 100%;}
+  .no-js &:hover,
+  .no-touch &:hover {background-color : $buddha_gold;}
+  &:active          {background-color : $chelsea_gem;}
+}
+.button {display : inline-block;}
+::-webkit-input-placeholder {color : $nandor;}
+:-moz-placeholder           {color : $nandor;}
+::-moz-placeholder          {color : $nandor;}
+:-ms-input-placeholder      {color : $nandor;}
+
+/**
+ * 02 Ajax Throbber
+ */
+.ajax-progress,
+.ajax-progress-throbber {display : none !important;}
+#global-throbber {
+  .ajax-progress,
+  .ajax-progress-throbber {
+    background : rgba($black, 0.8);
+    display    : block !important;
+    height     : 100%;
+    left       : 0;
+    position   : fixed;
+    text-align : center;
+    top        : 0;
+    width      : 100%;
+    z-index    : 9999;
+    &:before {
+      color          : $white;
+      content        : 'Working';
+      display        : inline-block;
+      font           : 400 normal 0.875rem/1em $humanist_slab;
+      left           : 50%;
+      position       : absolute;
+      text-align     : center;
+      top            : calc(50% + 42px);
+      transform      : translateX(-50%);
+    }
+    .throbber {
+      background    : $white;
+      border-radius : 3px;
+      box-shadow    : 0px 0px 20px 0px rgba($black, 0.25);
+      float         : none;
+      height        : 64px;
+      left          : 50%;
+      margin        : 0;
+      position      : absolute;
+      top           : 50%;
+      transform     : translate(-50%, -50%);
+      width         : 64px;
+      &:before,
+      &:after {
+        animation-iteration-count : infinite;
+        animation-timing-function : linear;
+        color                     : $selective_yellow;
+        content                   : '\f013';
+        display                   : block;
+        font-family               : $font_awesome;
+        position                  : absolute;
+      }
+      &:before {
+        animation-duration : 4000ms;
+        animation-name     : spin-alt;
+        font-size          : 1.75em;
+        left               : 10px;
+        top                : 30px;
+      }
+      &:after {
+        animation-duration : 2000ms;
+        animation-name     : spin;
+        font-size          : 1.35em;
+        left               : 33px;
+        top                : 10px;
+      }
+    }
+  }
+}
+
+/**
+ *  03 Webforms
+ */
+.webform-component-fieldset {
+  legend {
+    @extend h2;
+    float : left;
+    width : 100%;
+  }
+  .fieldset-wrapper {clear : both;}
+}
+
+/**
+ *  04 Newsletter Form
+ */
+.newsletter form {
+  display   : flex;
+  flex-wrap : wrap;
+  .column {
+    display        : flex;
+    flex           : 1 1 auto;
+    flex-direction : column;
+    padding        : 0 0 0 15px;
+    width          : 50%;
+    &:first-child {padding : 0 15px 0 0;}
+    @include respond-to(mobile_landscape_and_lower) {
+      padding : 0;
+      width   : 100%;
+      &:first-child {padding : 0;}
+    }
+  }
+  .form-item {
+    flex   : 0 0 auto;
+    margin : 0 0 15px;
+    label {
+      color          : $white;
+      font-weight    : 400;
+      line-height    : 1.2em;
+      margin-bottom  : 0.313em;
+      text-align     : center;
+      text-transform : none;
+      @include respond-to(mobile_landscape_and_lower) {
+        br:last-child {display : none;}
+      }
+    }
+    input,
+    textarea {
+      background : lighten($black, 15%);
+      border     : 0 none;
+      transition : background-color 0.25s ease-in-out;
+      .no-js &:hover,
+      .no-touch &:hover {background : lighten($black, 30%);}
+      &:focus {
+        background : $white;
+        color      : $black;
+        .no-js &:hover,
+        .no-touch &:hover {background : $white;}
+      }
+    }
+    &.address {
+      display        : flex;
+      flex           : 1 1 auto;
+      flex-direction : column;
+      label    {flex : 0 0 auto;}
+      textarea {flex : 1 1 auto;}
+    }
+  }
+  .form-actions {
+    flex     : 0 0 auto;
+    margin   : 0 auto;
+    position : relative;
+    width    : 54px;
+    &:after {
+      background      : url(../img/optimised/gfx--arrow--green.svg) 15px center no-repeat;
+      background-size : 40px 16px;
+      content         : '';
+      height          : 46px;
+      left            : 50%;
+      opacity         : 0;
+      position        : absolute;
+      top             : 0;
+      transform       : translateX(-50%);
+      transition      : opacity 0.25s ease-in-out;
+      width           : 54px;
+    }
+    input {
+      background-color    : transparent;
+      background-position : 15px center;
+      font-size           : 0;
+      height              : 46px;
+      line-height         : 0;
+      margin              : 0 auto;
+      opacity             : 1;
+      padding             : 0;
+      position            : relative;
+      width               : 54px;
+      z-index             : 1;
+      transition          : opacity 0.25s ease-in-out;
+      .no-js &:hover,
+      .no-touch &:hover {background-color : transparent;}
+    }
+    .no-js &:hover,
+    .no-touch &:hover {
+      &:after {opacity : 1;}
+      input   {opacity : 0;}
+    }
+  }
+}
+
+/**
+ *  05 Search Block
+ */
+#search-block-form .container-inline {
+  height   : 40px;
+  margin   : 10px 0 10px 20px;
+  overflow : hidden;
+  position : relative;
+  .form-item {
+    display : block;
+    width : 100%;
+    input {
+      background    : $white;
+      border        : 1px solid $white;
+      height        : 40px;
+      line-height   : 20px;
+      min-width     : 320px;
+      padding-right : 40px;
+      &:focus {border-color: $selective_yellow;}
+    }
+  }
+  .form-actions {
+    position : absolute;
+    right    : 0;
+    top      : 0;
+    width    : 40px;
+    z-index  : 1;
+    input {
+      background  : none;
+      color       : $nandor;
+      font-family : $font_awesome;
+      font-size   : 1.5em;
+      height      : 40px;
+      line-height : 42px;
+      padding     : 0;
+      transition  : color 0.25s ease-in-out;
+      width       : 40px;
+      .no-js &:hover,
+      .no-touch &:hover {color : $mai_tai;}
+    }
+  }
+}
+
+/**
+ *  06 Search Page
+ */
+.page-search {
+  .search-form {margin : 0;}
+  #edit-basic {
+    height   : 40px;
+    overflow : hidden;
+    position : relative;
+    .form-item {
+      display : flex;
+      width   : 100%;
+      label {
+        line-height   : 40px;
+        padding-right : 20px;
+        white-space   : nowrap;
+        @include respond-to(tablet_portrait_and_lower) {display : none;}
+      }
+      input {
+        height        : 40px;
+        line-height   : 20px;
+        padding-right : 40px;
+      }
+    }
+    input[type="submit"] {
+      background  : none;
+      color       : $nandor;
+      font-family : $font_awesome;
+      font-size   : 1.5em;
+      height      : 40px;
+      line-height : 42px;
+      padding     : 0;
+      position    : absolute;
+      right       : 0;
+      top         : 0;
+      transition  : color 0.25s ease-in-out;
+      width       : 40px;
+      z-index     : 1;
+      .no-js &:hover,
+      .no-touch &:hover {color : $mai_tai;}
+    }
+  }
+  form + h2,
+  .search-advanced {display : none;}
+  .search-results {
+    margin : 60px 0 0;
+    .search-result {
+      border-bottom : 1px solid $bud;
+      margin        : 0;
+      padding       : 20px 0;
+      &:first-child {padding : 0 0 20px;}
+      .title {
+        font-family : $humanist_slab;
+        font-size   : 1.714em;
+        font-weight : 400;
+        margin      : 0 0 0.625rem;
+      }
+      .search-snippet-info {
+        padding : 0 0 0 20px;
+        .search-snippet {margin : 0;}
+        .search-info {display : none;}
+      }
+    }
+  }
+}
+
+/**
+ *  07 User Forms
+ */
+
+/** 07a Login Form **/
+form[id^="user-login"] {
+  .form-actions {
+    display : flex;
+    @include respond-to(tablet_landscape_and_lower) {flex-wrap : wrap;}
+    .register {
+      flex        : 1 1 auto;
+      font-weight : 700;
+      line-height : 40px;
+      white-space : nowrap;
+      @include respond-to(tablet_landscape_and_lower) {
+        line-height : 1.429em;
+        order       : 2;
+        padding     : 20px 0 0;
+        white-space : normal;
+        width       : 100%;
+      }
+    }
+    .form-submit {
+      flex  : 0 0 auto;
+      width : 120px;
+      @include respond-to(tablet_landscape_and_lower) {order : 1;}
+      @include respond-to(tablet_portrait_and_lower) {width : 100%;}
+    }
+  }
+}
+
+/** 07b Registration Form **/
+form[id^="user-register-form"] {
+  .captcha {padding : 20px 0;}
+  .form-actions .form-submit {
+    min-width : 120px;
+    @include respond-to(tablet_portrait_and_lower) {width : 100%;}
+  }
+}
+
+/** 07c Password Form **/
+form[id^="user-pass"] {
+  margin : 0 auto 0 0;
+  width  : 50%;
+  @include respond-to(tablet_portrait_and_lower) {width : 100%;}
+  .captcha {padding : 0 0 20px;}
+  .form-actions .form-submit {
+    @include respond-to(tablet_portrait_and_lower) {width : 100%;}
+  }
+}
+
+/** 07d User Edit Form **/
+#user-profile-form {
+  .form-actions {
+    display : flex;
+    padding : 20px 0 0;
+    @include respond-to(mobile_landscape_and_lower) {flex-direction : column;}
+    input {
+      flex : 0 0 auto;
+      &#edit-submit {
+        margin : 0 30px 0 0;
+        width  : calc(40% - 60px);
+        @include respond-to(tablet_landscape_and_lower) {width : 50%;}
+        @include respond-to(mobile_landscape_and_lower) {
+          margin : 0 0 20px;
+          width  : 100%;
+        }
+      }
+      &#edit-cancel {
+        background : none;
+        color      : $nandor;
+        font-size  : 0.714em;
+        margin     : 0 auto 0 0;
+        padding    : 0;
+        transition : color 0.25s ease-in-out;
+        @include respond-to(mobile_landscape_and_lower) {width : 100%;}
+        .no-js &:hover,
+        .no-touch &:hover {
+          color           : $black;
+          text-decoration : none;
+        }
+      }
+    }
+  }
+}
+
+/**
+ *  08 Password Field
+ */
+div.form-item.form-type-password-confirm {
+  .form-type-password {
+    width : 100%;
+    div.password-confirm,
+    .password-strength {
+      font-size : 0.875em;
+      margin    : 0;
+      position  : absolute;
+      right     : 0;
+      top       : 0;
+      width     : 160px;
+      .error,
+      .ok {
+        color          : $green;
+        float          : right;
+        font-weight    : 700;
+        text-transform : capitalize;
+      }
+      .error {color : $red;}
+    }
+  }
+  .password-suggestions {
+    border  : 1px solid $nandor;
+    color   : $nandor;
+    margin  : 0.7em 0;
+    padding : 10px;
+    width   : 100%;
+    ul {padding-top : 10px;}
+  }
+}
+
+/**
+ *  08 Address Field
+ */
+.field-type-addressfield {
+  legend {display : none;}
+  .locality-block {
+    display : flex;
+    @include respond-to(tablet_portrait_and_lower) {display : block;}
+    .form-item {
+      flex  : 1 1 auto;
+      float : none;
+      @include respond-to(tablet_portrait_and_lower) {margin-right : 0;}
+      &:last-child {margin-right : 0;}
+    }
+  }
+}

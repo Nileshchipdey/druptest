@@ -1,0 +1,60 @@
+/**
+ *  ------
+ *  Mixins
+ *  ------
+ *
+ *  Contents
+ *  --------
+ *  01 Media Queries
+ *  02 Font Smoothing
+ */
+
+/**
+ *  01 Media Queries
+ */
+$site_width                 : 1400px;
+$site_width_and_lower       : 1399px;
+$tablet_landscape           : 1024px;
+$tablet_landscape_and_lower : 1023px;
+$tablet_portrait            : 768px;
+$tablet_portrait_and_lower  : 767px;
+$mobile_landscape           : 640px;
+$mobile_landscape_and_lower : 639px;
+$mobile_portrait            : 360px;
+@mixin respond-to($media) {
+  @if $media == site_width {
+    @media only screen and (max-width : $site_width) {@content;}
+  }
+  @else if $media == site_width_and_lower {
+    @media only screen and (max-width : $site_width_and_lower) {@content;}
+  }
+  @else if $media == tablet_landscape {
+    @media only screen and (max-width : $tablet_landscape) {@content;}
+  }
+  @else if $media == tablet_landscape_and_lower {
+    @media only screen and (max-width : $tablet_landscape_and_lower) {@content;}
+  }
+  @else if $media == tablet_portrait {
+    @media only screen and (max-width : $tablet_portrait) {@content;}
+  }
+  @else if $media == tablet_portrait_and_lower {
+    @media only screen and (max-width : $tablet_portrait_and_lower) {@content;}
+  }
+  @else if $media == mobile_landscape {
+    @media only screen and (max-width : $mobile_landscape) {@content;}
+  }
+  @else if $media == mobile_landscape_and_lower {
+    @media only screen and (max-width : $mobile_landscape_and_lower) {@content;}
+  }
+  @else if $media == mobile_portrait {
+    @media only screen and (max-width : $mobile_portrait) {@content;}
+  }
+}
+
+/**
+ *  02 Font Smoothing
+ */
+@mixin font-smoothing() {
+  -webkit-font-smoothing  : antialiased;
+  -moz-osx-font-smoothing : grayscale;
+}

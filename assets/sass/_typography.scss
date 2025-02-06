@@ -1,0 +1,211 @@
+/**
+ *  ----------
+ *  Typography
+ *  ----------
+ *
+ *  Contents
+ *  --------
+ *  01 Webfonts
+ *  02 Font Stacks
+ *  03 Presets
+ *  04 Selection Colours
+ */
+
+/**
+ *  01 Webfonts
+ */
+@font-face {
+  font-family : 'Egyptienne URW Light';
+  font-style  : normal;
+  font-weight : normal;
+  src         : url('../fonts/378ECC/378ECC_0_0.eot');
+  src         : url('../fonts/378ECC/378ECC_0_0.eot?#iefix') format('embedded-opentype'),
+                url('../fonts/378ECC/378ECC_0_0.woff2')      format('woff2'),
+                url('../fonts/378ECC/378ECC_0_0.woff')       format('woff'),
+                url('../fonts/378ECC/378ECC_0_0.ttf')        format('truetype');
+}
+@font-face {
+    font-family : 'Futura';
+    font-style  : normal;
+    font-weight : 400;
+    src         : url('../fonts/1475798/cf053eae-ba1f-44f3-940c-a34b68ccbbdf.eot?#iefix');
+    src         :
+    url('../fonts/1475798/cf053eae-ba1f-44f3-940c-a34b68ccbbdf.eot?#iefix') format('eot'),
+    url('../fonts/1475798/8bf38806-3423-4080-b38f-d08542f7e4ac.woff2')      format('woff2'),
+    url('../fonts/1475798/e2b9cbeb-fa8e-41cd-8a6a-46044b29ba52.woff')       format('woff'),
+    url('../fonts/1475798/c2a69697-4f06-4764-abd4-625031a84e31.ttf')        format('truetype');
+}
+@font-face {
+    font-family : 'Futura';
+    font-style  : normal;
+    font-weight : 700;
+    src         : url('../fonts/1475822/87f56fc1-ab05-4355-90af-9e83740663af.eot?#iefix');
+    src         :
+    url('../fonts/1475822/87f56fc1-ab05-4355-90af-9e83740663af.eot?#iefix') format('eot'),
+    url('../fonts/1475822/3cf9e1e8-63a2-497f-86ed-6b63d6de1986.woff2')      format('woff2'),
+    url('../fonts/1475822/184895ac-545b-450b-9d3a-c0a0a7620977.woff')       format('woff'),
+    url('../fonts/1475822/bf8628d2-1ae0-4645-ba3f-3ce62d8d907c.ttf')        format('truetype');
+}
+@font-face {
+    font-family : 'Humanist Slab 712';
+    font-size   : 900;
+    font-style  : normal;
+    src         : url('../fonts/1120264/ecef5b99-4e56-4f5d-9f5d-44cdfb90a11c.eot?#iefix');
+    src         :
+    url('../fonts/1120264/ecef5b99-4e56-4f5d-9f5d-44cdfb90a11c.eot?#iefix') format('eot'),
+    url('../fonts/1120264/06061e88-2f28-44b7-87f0-f040ebf67dcc.woff2')      format('woff2'),
+    url('../fonts/1120264/bb7183a1-fa87-40b6-82d9-d7fb1eb20579.woff')       format('woff'),
+    url('../fonts/1120264/13a54579-490e-41ca-b2fd-53dbb11c40d8.ttf')        format('truetype');
+}
+@font-face {
+    font-family : 'Humanist Slab 712';
+    font-style  : normal;
+    font-weight : 400;
+    src         : url('../fonts/1120267/d9600c31-a480-4da0-9a30-2937c078b13e.eot?#iefix');
+    src         :
+    url('../fonts/1120267/d9600c31-a480-4da0-9a30-2937c078b13e.eot?#iefix') format('eot'),
+    url('../fonts/1120267/9294fff5-1b4f-4fa6-9df8-8974329341e4.woff2')      format('woff2'),
+    url('../fonts/1120267/d367ead3-edcf-4a81-91d3-c7f88b6b0786.woff')       format('woff'),
+    url('../fonts/1120267/919e2135-b9bb-4780-9a42-05aa6977ca3c.ttf')        format('truetype');
+}
+@font-face {
+    font-family : 'Humanist Slab 712';
+    font-style  : italic;
+    font-weight : 400;
+    src         : url('../fonts/1120270/14f0b4f7-583e-4240-ad0f-5590cefdf593.eot?#iefix');
+    src         :
+    url('../fonts/1120270/14f0b4f7-583e-4240-ad0f-5590cefdf593.eot?#iefix') format('eot'),
+    url('../fonts/1120270/729fb96b-9a63-4c08-8425-71b704d472d4.woff2')      format('woff2'),
+    url('../fonts/1120270/216e28ed-56e9-4a41-b40c-b5fe9b1a2baf.woff')       format('woff'),
+    url('Fonts/1120270/91d1bfe6-9601-4e80-9af3-83a4ebeedf2b.ttf')           format('truetype');
+}
+@font-face {
+    font-family : 'Humanist Slab 712';
+    font-style  : normal;
+    font-weight : 700;
+    src         : url('../fonts/1120273/232e1eaa-8cdf-4d5b-b2cd-5c7f352b878a.eot?#iefix');
+    src         :
+    url('../fonts/1120273/232e1eaa-8cdf-4d5b-b2cd-5c7f352b878a.eot?#iefix') format('eot'),
+    url('../fonts/1120273/e7e2a3d6-b10e-429b-be1c-75decf08ceac.woff2')      format('woff2'),
+    url('../fonts/1120273/68fef842-8054-4bbd-bd99-7fd6e8836623.woff')       format('woff'),
+    url('../fonts/1120273/1f29a4f1-5eb0-42ac-8777-71a78154a760.ttf')        format('truetype');
+}
+
+/**
+ *  02 Font Stacks
+ */
+$helvetica       : Helvetica, Arial, 'Lucida Grande', sans-serif;
+$times_new_roman : TimesNewRoman, Times New Roman, Times, Baskerville, Georgia, serif;
+$egyptienne      : 'Egyptienne URW Light', $times_new_roman;
+$futura          : 'Futura', $helvetica;
+$humanist_slab   : 'Humanist Slab 712', $times_new_roman;
+$font_awesome    : 'Font Awesome 5 Pro';
+
+/**
+ *  03 Presets
+ */
+html {font-size : 14px;}
+body {
+  color            : $black;
+  font             : 400 normal 1em/1.429em $humanist_slab;
+  text-size-adjust : 100%;
+}
+h1 {
+  color  : $selective_yellow;
+  font   : 700 normal 1.429em/1.150em $futura;
+  margin : 0 0 2.143rem;
+}
+h2 {
+  color  : $black;
+  font   : 700 normal 1.214em/1.353em $futura;
+  margin : 0 0 0.714rem;
+}
+h3 {
+  color  : $black;
+  font   : normal normal 1.714em/1.042em $egyptienne;
+  margin : 0 0 1rem;
+}
+h4 {
+  color          : $black;
+  font           : 400 normal 1em/1.286em $futura;
+  margin         : 0 0 1.286rem;
+  text-transform : uppercase;
+}
+p {
+  margin : 0 0 1.429rem;
+  &.large {
+    font-size   : 1.286em;
+    line-height : 1.333em;
+  }
+  &.small {
+    font-size   : 0.714em;
+    line-height : 1.6em;
+  }
+  & + h2,
+  & + h3,
+  & + h4 {padding-top : 1.429rem;}
+}
+strong {font-weight : 700;}
+ul,
+ol {
+  margin     : 0 0 1.429rem 20px;
+  li {margin : 0 0 0.357em;}
+  & + h2,
+  & + h3,
+  & + h4 {padding-top : 1.429rem;}
+}
+hr {
+  border       : 1px solid $bud;
+  border-width : 1px 0 0;
+  margin       : 0 0 1.429rem;
+  & + h2,
+  & + h3,
+  & + h4 {padding-top : 1.429rem;}
+}
+a {
+  color           : $faded_jade;
+  text-decoration : none;
+  transition      : color 0.25s ease-in-out;
+  .no-touch &:hover,
+  .no-js &:hover {
+    color           : $spectra;
+    text-decoration : none;
+  }
+  &.arrow {
+    color          : $faded_jade;
+    display        : inline-block;
+    font           : 700 normal 1em/1.429em $futura;
+    position       : relative;
+    text-transform : uppercase;
+    transition     : color 0.25s ease-in-out;
+    white-space    : nowrap;
+    &:after,
+    &:before {
+      content    : '';
+      display    : block;
+      opacity    : 1;
+      position   : absolute;
+      right      : 0;
+      top        : 50%;
+      transform  : translateY(-50%);
+      transition : opacity 0.25s ease-in-out;
+    }
+    &:after {opacity : 0;}
+    .no-js &:hover,
+    .no-touch &:hover {
+      color : $spectra;
+      &:after  {opacity : 1;}
+      &:before {opacity : 0;}
+    }
+  }
+}
+
+/**
+ *  04 Selection Colours
+ */
+::selection {
+  background : $selective_yellow;
+  color      : $black;
+}
+img::selection {background : transparent;}
+body {-webkit-tap-highlight-color : $black;}
